@@ -15,7 +15,7 @@
 
 | Project title                           | Teams registered | Count |
 | --------------------------------------- | ---------------- | ----- |
-| **Matrix addition and multiplications** | -The matrix      | **1** |
+| **Matrix addition and multiplications** | -Matrix          | **1** |
 | **Sorting algorithms package**          | None             | **0** |
 | **Shape detector**                      | None             | **0** |
 | **Traffic Light**                       | None             | **0** |
@@ -25,9 +25,10 @@
 
 ## Teams
 
-| Team: Matrix (3 members)  |
-| ------------------------- |
-| Mahmoud Mohamed Abdelaziz |
-| Ahmed Emad Hamdy Beledy   |
-| Ahmed Sayed Anwar         |
+| Team        | Matrix                              |
+| ----------- | ----------------------------------- |
+| **Problem** | Matrix addition and multiplications |
+| **Members** | Ahmed Sayed Anwar                   |
+|             | Ahmed Emad Hamdy Beledy             |
+|             | Mahmoud Mohamed Abdelaziz           |
 
