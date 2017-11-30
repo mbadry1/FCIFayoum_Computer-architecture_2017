@@ -19,6 +19,17 @@
 
 - First and last lines:
 
+  - ```assembly
+    CODE	SEGMENT
+    ASSUME	CS:CODE,DS:CODE,ES:CODE,SS:CODE	
+
+    org 1000h
+
+    ; Put your code here...
+
+    CODE	ENDS
+    END
+    ```
   - ```assembly_x86
     CODE	SEGMENT
     ASSUME	CS:CODE,DS:CODE,ES:CODE,SS:CODE	
