@@ -15,6 +15,24 @@
 - No more traffic light'r project can be registered.
 
 
+## Useful codes for the project
+
+- First and last lines:
+
+  - ```
+    CODE	SEGMENT
+    ASSUME	CS:CODE,DS:CODE,ES:CODE,SS:CODE	
+
+    org 1000h
+
+    ; Put your code here...
+
+    CODE	ENDS
+    END
+    ```
+
+    ​
+
 ## Registered ideas and teams:
 
 | Project title                           | Teams registered                         | Count |
