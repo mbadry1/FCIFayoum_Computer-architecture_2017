@@ -198,13 +198,13 @@
 |             | Adel ahmed hashem          |
 |             | Mena mamdoh                |
 
-| Team        | abdalrhim122mostafa |
-| ----------- | ------------------- |
-| **Problem** | XO game             |
-| **Members** | Abdelrehim Mostafa  |
-|             | Mohammed saber      |
-|             | Ahmed Hassan        |
-|             |                     |
+| Team        | abdalrhim122mostafa    |
+| ----------- | ---------------------- |
+| **Problem** | XO game                |
+| **Members** | Abdelrehim Mostafa     |
+|             | Mohammed saber         |
+|             | Ahmed Hussein Hassanin |
+|             |                        |
 
 | Team        | sm2073                   |
 | ----------- | ------------------------ |
