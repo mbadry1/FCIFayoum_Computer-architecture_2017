@@ -19,7 +19,7 @@
 
 - First and last lines:
 
-  - ```
+  - ```assembly_x86
     CODE	SEGMENT
     ASSUME	CS:CODE,DS:CODE,ES:CODE,SS:CODE	
 
