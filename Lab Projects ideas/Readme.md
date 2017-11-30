@@ -17,23 +17,15 @@
 
 ## Useful codes for the project
 
-- First and last lines:
+- First and last lines on any kit code:
 
   - ```assembly
     CODE	SEGMENT
     ASSUME	CS:CODE,DS:CODE,ES:CODE,SS:CODE	
-
-    org 1000h
-
-    ; Put your code here...
-
-    CODE	ENDS
-    END
-    ```
-  - ```assembly_x86
-    CODE	SEGMENT
-    ASSUME	CS:CODE,DS:CODE,ES:CODE,SS:CODE	
-
+    command	equ	00h
+    stat	equ 02h
+    data	equ	04h
+    key		equ	01h
     org 1000h
 
     ; Put your code here...
@@ -42,10 +34,87 @@
     END
     ```
 
-  - ```ruby
-    require 'redcarpet'
-    markdown = Redcarpet.new("Hello World!")
-    puts markdown.to_html
+- Scan procedure:
+
+  - ```assembly
+    ;-----------------------------------------------------  
+    ;Scan PROC
+    ;Scans a kit button from the user into al
+    ;Inputs:   None
+    ;Outputs:  Al - scanned char code
+    ;-----------------------------------------------------	
+    scan:	IN AL,key					;read from keypad register
+    		TEST AL,10000000b			;test status flag of keypad register
+    		JNZ Scan
+    		AND al,00011111b			;mask the valid bits for code
+    		OUT key,AL					;get the keypad ready to read another key
+    		ret
+    ```
+
+- Busy procedure:
+
+  - ```assembly
+    ;-----------------------------------------------------  
+    ;Busy PROC
+    ;Makes the CPU wait till the kit is ready to take a command
+    ;Inputs:   None
+    ;Outputs:  None
+    ;-----------------------------------------------------		
+    busy:	IN AL,Stat
+    		test AL,10000000b
+    		jnz busy
+    		ret
+    ```
+
+- LCD screen initialization procedure:
+
+  - ```assembly
+    ;-----------------------------------------------------  
+    ;Lcd_init PROC
+    ;LCD screen initialization which makes the screen ready as a one line input with a ;cursor. You can call this method again if you want to clear the LCD screen
+    ;Inputs:   None
+    ;Outputs:  None
+    ;-----------------------------------------------------	
+    Lcd_init:	call busy      	    ;Check if KIT is busy
+    		mov al,30h          ;8-bits mode, one line & 5x7 dots
+    		out command,al      ;Execute the command above.
+    		call busy           ;Check if KIT is busy
+    		mov al,0fh          ;Turn the display and cursor ON, and set cursor to blink
+    		out command,al      ;Execute the command above.
+    		call busy           ;Check if KIT is busy
+    		mov al,06h          ;cursor is to be moved to right
+    		out command,al      ;Execute the command above.
+    		call busy           ;Check if KIT is busy
+    		mov al,02           ;Return cursor to home
+    		out command,al      ;Execute the command above.
+    		call busy           ;Check if KIT is busy
+    		mov al,01           ;Clear the display
+    		out command,al      ;Execute the command above.
+    		call busy           ;Check if KIT is busy
+    		ret
+    ```
+
+- Print string on screen procedure:
+
+  - ```assembly
+    ;-----------------------------------------------------  
+    ;print_string PROC
+    ;Prints a null terminated string on the kit LCD screen
+    ;Precondations: the string should be terminated by 0
+    ;Inputs:   si   the offset of the string
+    ;Outputs:  None
+    ;-----------------------------------------------------	
+    print_string:	push al
+    				push si
+    				start:	mov al,[si]
+    						cmp al,00
+    						je L1
+    						out data,al
+    						call busy
+    						inc si
+    						jmp start
+    				pop si
+    				pop al
     ```
 
     ​
