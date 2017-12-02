@@ -43,12 +43,12 @@
     ;Inputs:   None
     ;Outputs:  Al - scanned char code
     ;-----------------------------------------------------	
-    scan:	IN AL,key					;read from keypad register
-    		TEST AL,10000000b			;test status flag of keypad register
-    		JNZ Scan
-    		AND al,00011111b			;mask the valid bits for code
-    		OUT key,AL					;get the keypad ready to read another key
-    		ret
+    scan:   IN AL,key					;read from keypad register
+            TEST AL,10000000b			;test status flag of keypad register
+            JNZ Scan
+            AND al,00011111b			;mask the valid bits for code
+            OUT key,AL					;get the keypad ready to read another key
+            ret
     ```
 
 - Busy procedure:
@@ -60,10 +60,10 @@
     ;Inputs:   None
     ;Outputs:  None
     ;-----------------------------------------------------		
-    busy:	IN AL,Stat
-    		test AL,10000000b
-    		jnz busy
-    		ret
+    busy:   IN AL,Stat
+            test AL,10000000b
+            jnz busy
+            ret
     ```
 
 - LCD screen initialization procedure:
@@ -104,17 +104,17 @@
     ;Inputs:   si   the offset of the string
     ;Outputs:  None
     ;-----------------------------------------------------	
-    print_string:	push al
-    				push si
-    				start:	mov al,[si]
-    						cmp al,00
-    						je L1
-    						out data,al
-    						call busy
-    						inc si
-    						jmp start
-    				pop si
-    				pop al
+    print_string:   push al
+                    push si
+                    start:  mov al,[si]
+                            cmp al,00
+                            je L1
+                            out data,al
+                            call busy
+                            inc si
+                            jmp start
+                    pop si
+                    pop al
     ```
 
     ​
