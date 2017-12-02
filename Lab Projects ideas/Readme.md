@@ -123,9 +123,9 @@
 
 | Project title                           | Teams registered                         | Count |
 | --------------------------------------- | ---------------------------------------- | ----- |
-| **Matrix addition and multiplications** | Matrix<br />New-Folder<br />sabdo1230    | **3** |
+| **Matrix addition and multiplications** | Matrix<br />New-Folder<br />sabdo1230<br />ar1682 | **4** |
 | **Sorting algorithms package**          | mohamed.ali.farag.171997<br />ayamohamed21337<br />sabdo1230<br />bishosaed1<br />assembly2017 | **5** |
-| **Shape detector**                      | None                                     | **0** |
+| **Shape detector**                      | ij1129                                   | **1** |
 | **Traffic Light**                       | nalohosam555 <br />ayamohamed21337<br />4S<br />kn1128<br />moatazalazamy<br />sm2073<br />carolmicheal784 | **7** |
 | **XO game**                             | abdalrhim122mostafa                      | **1** |
 
@@ -146,7 +146,7 @@
 | **Members** | Mohamed Ali Farag          |
 |             | Hussien Ragab Mohamed      |
 |             | Ismail Ramadan Ismail      |
-|             |                            |
+|             | Hossam Hassan Zaki         |
 
 | Team        | nalohosam555                    |
 | ----------- | ------------------------------- |
@@ -245,4 +245,20 @@
 |             | Mohamed Ewaes              |
 |             | Fatma Mabrouk              |
 |             | Mustafa Ryad               |
+
+| Team        | ar1682                              |
+| ----------- | ----------------------------------- |
+| **Problem** | Matrix addition and multiplications |
+| **Members** | Mostafa Mahmoud Abbas               |
+|             | Fayed Goda                          |
+|             | Ahmed Ramadan                       |
+|             | Raouf Mohamed                       |
+
+| Team        | ij1129                          |
+| ----------- | ------------------------------- |
+| **Problem** | Shape detector                  |
+| **Members** | Ibrahim Gamal elsoufy           |
+|             | Ahmed Sarhan Ahmed              |
+|             | Abdelrahman Mohammed Abdelsalam |
+|             | Mohammed Saber Abdelhameed      |
 
