@@ -75,7 +75,9 @@
     ;Inputs:   None
     ;Outputs:  None
     ;-----------------------------------------------------	
-    Lcd_init:	call busy      	    ;Check if KIT is busy
+    Lcd_init:	
+            push al
+            call busy      	    ;Check if KIT is busy
     		mov al,30h          ;8-bits mode, one line & 5x7 dots
     		out command,al      ;Execute the command above.
     		call busy           ;Check if KIT is busy
@@ -91,6 +93,7 @@
     		mov al,01           ;Clear the display
     		out command,al      ;Execute the command above.
     		call busy           ;Check if KIT is busy
+    		pop al
     		ret
     ```
 
@@ -113,8 +116,22 @@
                             call busy
                             inc si
                             jmp start
+                    L1:
                     pop si
                     pop al
+                    ret
+    ```
+
+- Integer to string
+
+  - ```
+    ;-----------------------------------------------------  
+    ;integer_to_string PROC
+    ;Converts an integer to string
+    ;Precondations: A buffer for the returned string
+    ;Inputs:   Cx is the integer, si points to the first element in the buffer
+    ;Outputs:  The string in si
+    ;-----------------------------------------------------	
     ```
 
     ​
@@ -123,8 +140,8 @@
 
 | Project title                           | Teams registered                         | Count |
 | --------------------------------------- | ---------------------------------------- | ----- |
-| **Matrix addition and multiplications** | Matrix<br />New-Folder<br />sabdo1230<br />ar1682<br />omaressam3332<br />moazelmassery | **6** |
-| **Sorting algorithms package**          | mohamed.ali.farag.171997<br />ayamohamed21337<br />sabdo1230<br />bishosaed1<br />assembly2017<br /> Nehadahmed2210 | **6** |
+| **Matrix addition and multiplications** | Matrix<br />New-Folder<br />ar1682<br />omaressam3332<br />moazelmassery<br />ahmedbadia96<br /> hanynady553 | **7** |
+| **Sorting algorithms package**          | mohamed.ali.farag.171997<br />ayamohamed21337<br />sabdo1230<br />bishosaed1<br />assembly2017<br /> Nehadahmed2210<br />ahmedbadia961 | **7** |
 | **Shape detector**                      | ij1129                                   | **1** |
 | **Traffic Light**                       | nalohosam555 <br />ayamohamed21337<br />4S<br />kn1128<br />moatazalazamy<br />sm2073<br />carolmicheal784 | **7** |
 | **XO game**                             | abdalrhim122mostafa                      | **1** |
@@ -139,6 +156,7 @@
 | **Members** | Ahmed Sayed Anwar                   |
 |             | Ahmed Emad Hamdy Beledy             |
 |             | Mahmoud Mohamed Abdelaziz           |
+|             | Ezzat                               |
 
 | Team        | mohamed.ali.farag.171997   |
 | ----------- | -------------------------- |
@@ -221,14 +239,14 @@
 |             | Mohamed Ramadan                     |
 |             |                                     |
 
-| Team        | sabdo1230                                |
-| ----------- | ---------------------------------------- |
-| **Problem** | Sorting algorithms package & Matrix addition and multiplications |
-| **Members** | Ahmed el sayed mokhtar                   |
-|             | Abdelrahman saber                        |
-|             | Hani nady                                |
-|             | Ibrahim anany                            |
-|             | Hussein badran                           |
+| Team        | sabdo1230                  |
+| ----------- | -------------------------- |
+| **Problem** | Sorting algorithms package |
+| **Members** | Ahmed el sayed mokhtar     |
+|             | Abdelrahman saber          |
+|             | Ibrahim anany              |
+|             | Hussein badran             |
+|             |                            |
 
 | Team        | bishosaed1                 |
 | ----------- | -------------------------- |
@@ -285,4 +303,28 @@
 |             | Doaa Mohamed               |
 |             |                            |
 |             |                            |
+
+| Team        | ahmedbadia96                        |
+| ----------- | ----------------------------------- |
+| **Problem** | Matrix addition and multiplications |
+| **Members** | Ahmed mohamed mahmoud               |
+|             | Hossam abdallah ebrahim             |
+|             | Mohamed ahmed moustafa              |
+|             |                                     |
+
+| Team        | ahmedbadia961              |
+| ----------- | -------------------------- |
+| **Problem** | Sorting algorithms package |
+| **Members** | moutaz mohamed gaber       |
+|             | youssof ahmed said         |
+|             | abdelrahman aswa ahmed     |
+|             |                            |
+
+| Team        | hanynady553                         |
+| ----------- | ----------------------------------- |
+| **Problem** | Matrix addition and multiplications |
+| **Members** | Hani nady                           |
+|             | Mahmoud Hamouda                     |
+|             |                                     |
+|             |                                     |
 
