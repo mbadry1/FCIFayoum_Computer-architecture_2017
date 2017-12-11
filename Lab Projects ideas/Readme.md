@@ -124,14 +124,47 @@
 
 - Integer to string
 
-  - ```
+  - ```assembly
     ;-----------------------------------------------------  
     ;integer_to_string PROC
     ;Converts an integer to string
     ;Precondations: A buffer for the returned string
-    ;Inputs:   Cx is the integer, si points to the first element in the buffer
+    ;Inputs:   Ax is the integer, si points to the first element in the buffer
     ;Outputs:  The string in si
-    ;-----------------------------------------------------	
+    ;-----------------------------------------------------
+    integer_to_string:
+       ;Clearing the buffer
+       mov cx, 0
+       push si
+       L3: cmp [si],0
+           je L4
+           mov [si],0
+           inc si
+           JMP L3
+           
+       L4: pop si
+       push si
+       push ax
+       mov cx, 0
+       L1: mov dx, 0 
+           mov bx, 10
+           div bx
+           add dl, '0'
+           push dx
+           inc cx
+           cmp ax, 0
+           jne L1
+           
+       L2:        
+           pop dx
+           mov [si], dl
+           inc si
+           Loop L2
+       pop ax
+       pop si 
+       ret
+            
+
     ```
 
     ​
