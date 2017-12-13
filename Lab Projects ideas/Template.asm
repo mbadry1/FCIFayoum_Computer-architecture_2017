@@ -6,8 +6,10 @@ data	equ	04h
 key		equ	01h
 org 1000h
 
-
+;--------Your code here-------
 hlt
+;-----------------------------
+
 ;-----------Vars--------------
 ten = 10    ;Required by a function
 signFlag db 0 ;Required by a function
