@@ -246,7 +246,7 @@
 | **Members** | Abdelrehim Mostafa     |
 |             | Mohammed saber         |
 |             | Ahmed Hussein Hassanin |
-|             | Ahmed Khaled           |
+|             | ~~Ahmed Khaled~~       |
 
 | Team        | sm2073                   |
 | ----------- | ------------------------ |
@@ -319,7 +319,7 @@
 | **Members** | Omar Essam Omar Qasem               |
 |             | Mohamed Adel Abdeltawab             |
 |             | Ezz eldein Hamdy Hosny              |
-|             |                                     |
+|             | Abdelrahman Atef Mostafa            |
 
 | Team        | moazelmassery                       |
 | ----------- | ----------------------------------- |
