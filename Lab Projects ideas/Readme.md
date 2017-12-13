@@ -97,6 +97,26 @@
     		ret
     ```
 
+- Clear screen
+
+  - ```assembly
+    ;-----------------------------------------------------  
+    ;clear_screen PROC
+    ;Clears the LCD screen. Use it instead of Lcd_init if you are trying to clear the screen.
+    ;Inputs:   None
+    ;Outputs:  None
+    ;-----------------------------------------------------
+    clear_screen:
+                  push ax
+                  call busy           ;Check if KIT is busy
+                  mov al,01           ;Clear the display
+                  out command,al      ;Execute the command above.
+                  call busy           ;Check if KIT is busy
+                  pop ax
+    ```
+
+    ​
+
 - Print string on screen procedure:
 
   - ```assembly
@@ -107,7 +127,7 @@
     ;Inputs:   si   the offset of the string
     ;Outputs:  None
     ;-----------------------------------------------------	
-    print_string:   push al
+    print_string:   push ax
                     push si
                     start:  mov al,[si]
                             cmp al,00
@@ -118,7 +138,7 @@
                             jmp start
                     L1:
                     pop si
-                    pop al
+                    pop ax
                     ret
     ```
 
@@ -127,44 +147,163 @@
   - ```assembly
     ;-----------------------------------------------------  
     ;integer_to_string PROC
-    ;Converts an integer to string
+    ;Converts an integer to string. Works with signed and unsigned numbers.
     ;Precondations: A buffer for the returned string
     ;Inputs:   Ax is the integer, si points to the first element in the buffer
     ;Outputs:  The string in si
     ;-----------------------------------------------------
     integer_to_string:
+       
        ;Clearing the buffer
+       push cx
        mov cx, 0
        push si
-       L3: cmp [si],0
-           je L4
-           mov [si],0
+       Li3:
+           mov bl, [si]
+           cmp bl,0
+           je Li4
+           mov bl, 0
+           mov [si],bl
            inc si
-           JMP L3
+           JMP Li3
            
-       L4: pop si
+       Li4: pop si
        push si
        push ax
        mov cx, 0
-       L1: mov dx, 0 
+       
+       ;Checking the sign
+       cmp Ax, 0
+       jge Li1
+       mov [si], '-'
+       add si, 1
+       neg Ax
+       
+       Li1: mov dx, 0 
            mov bx, 10
            div bx
            add dl, '0'
            push dx
            inc cx
            cmp ax, 0
-           jne L1
+           jne Li1
+       
            
-       L2:        
+       Li2:        
            pop dx
            mov [si], dl
            inc si
-           Loop L2
+           Loop Li2
        pop ax
-       pop si 
+       pop si
+       pop cx 
        ret
             
 
+    ```
+
+- String to integer:
+
+  - ```assembly
+    ;-----------------------------------------------------  
+    ;string_to_int PROC
+    ;Converts a string into integer
+    ;It works with sign and unsigned numbers
+    ;Precondations: string is terminated by 0
+    ;Inputs:   si: offset of string
+    ;Outputs:  dx: output integer
+    ;-----------------------------------------------------
+    string_to_int:
+        push bx
+        push ax
+        push cx
+        push si
+        push di
+        
+        mov di, 0   ;result
+        mov bx, 1   ;Represent 1, 10, 100, etc
+        mov signFlag, 0       ;Is positive
+        mov cx, 0        
+                
+        ;First loop to decide the number of chars
+        sti_L1:  mov al, [si]
+                 
+                 cmp al, 0
+                 je sti_L2
+                 
+                 inc cx
+                 add si, 1
+                 
+                 JMP sti_L1
+        
+        sti_L2:  sub si, 1
+                 
+                 mov al, [si]
+                 mov ah, 0h
+                 
+                 cmp al,'-'       ; If a minus
+                 jne sti_number
+                 mov signFlag, 1   ;Is negative
+                 JMP sti_L3 ;Complete the loop
+                 
+                 sti_number: sub al, '0'
+                 mul bx  ; result = ax * bx
+                 add di, ax  ; Aggregation
+                            
+                 mov al, ten
+                 mov ah, 0
+                 mul bx
+                 mov bx, ax   ;bx*= 10
+                 
+                 sti_L3:
+                 loop sti_L2
+        
+        mov dx, di
+        
+        ; Handeling the sign
+        cmp signFlag, 1
+        jne sti_exit
+        neg dx
+        
+        sti_exit:
+        pop di
+        pop si
+        pop cx
+        pop ax
+        pop bx
+        ret
+    ```
+
+- Power
+
+  - ```assembly
+    ;-----------------------------------------------------  
+    ;power PROC
+    ;calculates power of a number given a power
+    ;Inputs:   ax: number, bx: power
+    ;Outputs:  dx: output
+    ;-----------------------------------------------------
+    power:
+        cmp bx, 00h
+        jne pw_L2
+        mov dx, 01h
+        ret
+        
+        pw_L2:  push cx
+                push ax
+                push bx 
+            
+                mov cx, bx
+                dec cx
+                mov bx, ax
+                pw_L1:  mul bx
+                        Loop pw_L1
+                mov dx, ax 
+            
+                pop bx
+                pop ax
+                pop cx
+        ret
     ```
 
     ​
