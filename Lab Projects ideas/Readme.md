@@ -13,6 +13,8 @@
 ## Announcements
 
 - No more traffic light's project can be registered.
+- All Teams has been registered.
+- `Template.asm` file has been added.
 
 
 ## Useful codes for the project
@@ -76,7 +78,7 @@
     ;Outputs:  None
     ;-----------------------------------------------------	
     Lcd_init:	
-            push al
+            push ax
             call busy      	    ;Check if KIT is busy
     		mov al,30h          ;8-bits mode, one line & 5x7 dots
     		out command,al      ;Execute the command above.
@@ -93,7 +95,7 @@
     		mov al,01           ;Clear the display
     		out command,al      ;Execute the command above.
     		call busy           ;Check if KIT is busy
-    		pop al
+    		pop ax
     		ret
     ```
 
